@@ -2,19 +2,19 @@
 
   <div class="min-h-full">
     <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
+      <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow"/>
+              <img class="w-8 h-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow"/>
             </div>
             <div class="hidden md:block">
-              <div class="ml-10 flex items-baseline space-x-4">
+              <div class="flex items-baseline ml-10 space-x-4">
                 <router-link
                   v-for="item in navigation"
                   :key="item.name"
                   :to="item.to"
-                  active-class="bg-gray-900 text-white"
+                  active-class="text-white bg-gray-900"
                   :class="[
                     this.$route.name === item.to.name
                     ? ''
@@ -27,34 +27,34 @@
             </div>
           </div>
           <div class="hidden md:block">
-            <div class="ml-4 flex items-center md:ml-6">
+            <div class="flex items-center ml-4 md:ml-6">
               <button type="button"
-                      class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                      class="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                 <span class="sr-only">View notifications</span>
-                <BellIcon class="h-6 w-6" aria-hidden="true"/>
+                <BellIcon class="w-6 h-6" aria-hidden="true"/>
               </button>
 
               <!-- Profile dropdown -->
-              <Menu as="div" class="ml-3 relative">
+              <Menu as="div" class="relative ml-3">
                 <div>
                   <MenuButton
-                    class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt=""/>
+                    <img class="w-8 h-8 rounded-full" :src="user.imageUrl" alt=""/>
                   </MenuButton>
                 </div>
-                <transition enter-active-class="transition ease-out duration-100"
-                            enter-from-class="transform opacity-0 scale-95"
-                            enter-to-class="transform opacity-100 scale-100"
-                            leave-active-class="transition ease-in duration-75"
-                            leave-from-class="transform opacity-100 scale-100"
-                            leave-to-class="transform opacity-0 scale-95">
+                <transition enter-active-class="transition duration-100 ease-out"
+                            enter-from-class="opacity-0 transform scale-95"
+                            enter-to-class="opacity-100 transform scale-100"
+                            leave-active-class="transition duration-75 ease-in"
+                            leave-from-class="opacity-100 transform scale-100"
+                            leave-to-class="opacity-0 transform scale-95">
                   <MenuItems
-                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    class="absolute right-0 py-1 mt-2 w-48 bg-white rounded-md ring-1 ring-black ring-opacity-5 shadow-lg origin-top-right focus:outline-none">
                     <MenuItem
 
                       v-slot="{ active }">
-                      <a @click="logout"
+                      <a @click="logout()"
                          :class="['block px-4 py-2 text-sm text-gray-700 cursor-pointer']">Sign out
                       </a>
                     </MenuItem>
@@ -63,13 +63,13 @@
               </Menu>
             </div>
           </div>
-          <div class="-mr-2 flex md:hidden">
+          <div class="flex -mr-2 md:hidden">
             <!-- Mobile menu button -->
             <DisclosureButton
-              class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+              class="inline-flex justify-center items-center p-2 text-gray-400 bg-gray-800 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span class="sr-only">Open main menu</span>
-              <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true"/>
-              <XIcon v-else class="block h-6 w-6" aria-hidden="true"/>
+              <MenuIcon v-if="!open" class="block w-6 h-6" aria-hidden="true"/>
+              <XIcon v-else class="block w-6 h-6" aria-hidden="true"/>
             </DisclosureButton>
           </div>
         </div>
@@ -80,7 +80,7 @@
           <router-link v-for="item in navigation"
                        :key="item.name" as="a"
                        :to="item.to"
-                       active-class="bg-gray-900 text-white"
+                       active-class="text-white bg-gray-900"
                        :class="[
                          this.$route.name === item.to.name
                          ? ''
@@ -93,7 +93,7 @@
         <div class="pt-4 pb-3 border-t border-gray-700">
           <div class="flex items-center px-5">
             <div class="flex-shrink-0">
-              <img class="h-10 w-10 rounded-full" :src="user.imageUrl" alt=""/>
+              <img class="w-10 h-10 rounded-full" :src="user.imageUrl" alt=""/>
             </div>
             <div class="ml-3">
               <div class="text-base font-medium leading-none text-white">{{ user.name }}</div>
@@ -101,12 +101,11 @@
             </div>
 
           </div>
-          <div class="mt-3 px-2 space-y-1">
+          <div class="px-2 mt-3 space-y-1">
             <DisclosureButton
-
-                              as="a"
-                              @click="logout"
-                              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 cursor-pointer">
+              as="a"
+              @click="logout()"
+              class="block px-3 py-2 text-base font-medium text-gray-400 rounded-md cursor-pointer hover:text-white hover:bg-gray-700">
               Sign out
             </DisclosureButton>
           </div>
@@ -123,6 +122,7 @@ import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIte
 import {BellIcon, MenuIcon, XIcon} from '@heroicons/vue/outline'
 import {useStore} from "vuex";
 import {computed} from 'vue';
+import {useRouter} from "vue-router";
 
 const navigation = [
   {name: 'Dashboard', to: {name: 'Dashboard'}},
@@ -145,10 +145,20 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
+
+    function logout(){
+      store.commit('logout');
+      router.push({
+       name: 'Login'
+      })
+    }
+
     return {
       user: computed(() => store.state.user.data),
       navigation,
-    }
+      logout
+    };
   },
 }
 </script>
