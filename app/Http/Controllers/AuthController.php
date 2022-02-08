@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+
+
+
 use App\Models\User;
-use illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -20,7 +24,7 @@ class AuthController extends Controller
             ]
         ]);
 
-        /** @var User $user */
+        /** @var \App\Models\User $user */
         $user = User::create([
            'name' => $data['name'],
            'email' => $data['email'],
