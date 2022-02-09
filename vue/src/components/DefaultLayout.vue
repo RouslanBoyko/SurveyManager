@@ -28,11 +28,7 @@
           </div>
           <div class="hidden md:block">
             <div class="flex items-center ml-4 md:ml-6">
-              <button type="button"
-                      class="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <span class="sr-only">View notifications</span>
-                <BellIcon class="w-6 h-6" aria-hidden="true"/>
-              </button>
+
 
               <!-- Profile dropdown -->
               <Menu as="div" class="relative ml-3">
@@ -119,7 +115,7 @@
 
 <script>
 import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
-import {BellIcon, MenuIcon, XIcon} from '@heroicons/vue/outline'
+import {MenuIcon, XIcon} from '@heroicons/vue/outline'
 import {useStore} from "vuex";
 import {computed} from 'vue';
 import {useRouter} from "vue-router";
@@ -139,7 +135,6 @@ export default {
     MenuButton,
     MenuItem,
     MenuItems,
-    BellIcon,
     MenuIcon,
     XIcon,
   },
@@ -147,13 +142,14 @@ export default {
     const store = useStore();
     const router = useRouter();
 
-    function logout(){
-      store.commit('logout');
-      router.push({
-       name: 'Login'
-      })
+    function logout() {
+      store.dispatch('logout')
+        .then(() => {
+          router.push({
+            name: 'Login'
+          })
+        })
     }
-
     return {
       user: computed(() => store.state.user.data),
       navigation,
