@@ -259,18 +259,7 @@ const store = createStore({
     }
   },
   mutations: {
-    saveSurvey: (state, survey) => {
-      state.surveys = [...state.surveys, survey.data]
-    },
 
-    updateSurvey: (state, survey) => {
-      state.surveys = state.surveys.map((s) => {
-        if (s.id == survey.data.id) {
-          return survey.data
-        }
-        return s
-      })
-    },
     logout: (state) => {
       state.user.token = null;
       state.user.data = {};
