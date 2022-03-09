@@ -264,12 +264,12 @@
 
 import { v4 as uuidv4 } from "uuid"
 import store from '../store'
-import {ref} from "vue"
-import {useRoute} from 'vue-router'
+import { ref } from "vue"
+import { useRoute, useRouter } from 'vue-router'
 import PageComponent from '../components/PageComponent.vue'
 import QuestionEditor from '../components/editor/QuestionEditor.vue'
 
-
+const router = useRouter()
 const route = useRoute()
 
 // create empty survey
@@ -287,33 +287,6 @@ if (route.params.id) {
   model.value = store.state.surveys.find(
     (s) => s.id === parseInt(route.params.id)
   );
-}
-
-function addQuestion(index) {
-  const newQuestion = {
-    id: uuidv4(),
-    type: 'text',
-    question:'',
-    description: null,
-    data: {},
-  }
-  model.value.questions.splice(index, 0, newQuestion)
-}
-
-function deleteQuestion(question) {
-  model.value.questions = model.value.questions.filter(
-    (q) => q !== question
-  )
-}
-
-function questionChange(question) {
-  model.value.questions = model.value.questions.map(
-    (q) => {
-      if(q.id === question.id) {
-        return JSON.parse(JSON.stringify(question))
-      }
-      return q
-    })
 }
 </script>
 
