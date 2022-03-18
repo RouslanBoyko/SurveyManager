@@ -64,7 +64,6 @@ class SurveyController extends Controller
         return new SurveyResource($survey);
     }
 
-
     public function destroy(Survey $survey, Request $request)
     {
         $user = $request->user();
@@ -72,6 +71,11 @@ class SurveyController extends Controller
             return abort(403, 'Unauthorized action.');
         }
         $survey->delete();
+        // if there is an old image, delete it
+        if ($survey->image) {
+            $absolutePath = public_path($survey->image);
+            File::delete($absolutePath);
+        }
         return response('', 204);
     }
 

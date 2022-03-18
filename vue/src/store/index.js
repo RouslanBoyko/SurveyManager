@@ -214,7 +214,7 @@ const store = createStore({
       token: sessionStorage.getItem('TOKEN'),
     },
     currentSurvey: {
-      loading: false,
+      loading: true,
       data: {}
     },
     surveys: [...tmpSurveys],
@@ -253,6 +253,9 @@ const store = createStore({
         })
       }
       return response
+    },
+    deleteSurvey({}, id) {
+      return axiosClient.delete(`/survey/${id}`)
     },
     register({commit}, user) {
       return axiosClient.post('/register', user)
