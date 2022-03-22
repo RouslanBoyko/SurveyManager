@@ -20,7 +20,7 @@ const store = createStore({
   getters: {},
   actions: {
     getSurvey({ commit }, id) {
-      commit('SetCurrentSurveyLoading', true)
+      commit('setCurrentSurveyLoading', true)
       return axiosClient
         .get(`/survey/${id}`)
         .then((res) => {
